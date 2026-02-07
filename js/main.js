@@ -27,12 +27,11 @@ export async function router(){
             renderList(enemies, "#enemies", "monster");
             renderList(items, "#items", "item");
 
-        } else if(type === "boss" || type === "monster" || type === "item"){
-            const res = await fetch(`https://zelda.fanapis.com/api/${type}s/${id}`);
+        } else if(type === "boss"){
+            const res = await fetch(`https://zelda.fanapis.com/api/${type}es/${id}`);
             if(!res.ok) throw new Error("Failed to fetch entity");
             const json = await res.json();
             const entity = json.data;
-
             main.innerHTML = `
                 <button id="back-btn">← Back</button>
                 <h2>${entity.name}</h2>
@@ -44,7 +43,23 @@ export async function router(){
                 router();
             });
 
-        } else {
+        } else if(type === "monster" || type === "item"){
+            const res = await fetch(`https://zelda.fanapis.com/api/${type}s/${id}`);
+            if(!res.ok) throw new Error("Failed to fetch entity");
+            const json = await res.json();
+            const entity = json.data;
+            main.innerHTML = `
+                    <button id="back-btn">← Back</button>
+                    <h2>${entity.name}</h2>
+                    <p>${entity.description || "No description available."}</p>
+                `;
+
+                document.querySelector("#back-btn").addEventListener("click", () => {
+                    history.pushState({}, "", "?type=game");
+                    router();
+                });
+        
+        }else {
             main.innerHTML = "<p>Unknown route</p>";
         }
     } catch(error){
