@@ -4,7 +4,7 @@ This Web App is a compendium for the video game the Legend of Zelda: Twilight Pr
 
 This website was a way for me to learn how to use an API to request data, translate it into JavaScript, and display it on the screen for users to see. Below is a demo of how to use it and a walkthrough of my code.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Zelda Compendium Demo](https://youtu.be/3EwnuWPK5ic)
 
 # Development Environment
 
